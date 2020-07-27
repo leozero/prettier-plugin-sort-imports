@@ -1,20 +1,41 @@
 import { expect } from 'chai';
 import prettier from 'prettier';
-import config from './test-config';
+import config, { configWithSeparation } from './test-config';
 
-const code = `
+describe('no import export', () => {
+    const code = `
 function add(a:number,b:number) {
   return a + b;
 }
 `;
 
-const formattedCode = `function add(a: number, b: number) {
+    const formattedCode = `function add(a: number, b: number) {
     return a + b;
 }
 `;
 
-test('format', () => {
-    const output = prettier.format(code, config);
+    test('format', () => {
+        const output = prettier.format(code, config);
 
-    expect(output).to.equal(formattedCode);
+        expect(output).to.equal(formattedCode);
+    });
+});
+
+describe('no import export with separation', () => {
+    const code = `
+function add(a:number,b:number) {
+  return a + b;
+}
+`;
+
+    const formattedCode = `function add(a: number, b: number) {
+    return a + b;
+}
+`;
+
+    test('format', () => {
+        const output = prettier.format(code, configWithSeparation);
+
+        expect(output).to.equal(formattedCode);
+    });
 });
